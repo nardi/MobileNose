@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:minWidth="25px"
+    android:minHeight="25px"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/linearLayout3"
+    android:paddingTop="4dp">
+    <LinearLayout
+        android:orientation="vertical"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:id="@+id/linearLayout4"
+        android:layout_weight="1">
+        <TextView
+            android:text="Group IN"
+            android:id="@+id/groupText"
+            android:textSize="14sp"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical" />
+        <TextView
+            android:text="dr. A.D. Pimentel"
+            android:id="@+id/staffText"
+            android:textSize="14sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:gravity="center_vertical" />
+    </LinearLayout>
+    <TextView
+        android:text="SP G0.10-G0.12"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:id="@+id/locationText"
+        android:textSize="14sp"
+        android:layout_marginLeft="10sp"
+        android:gravity="center_vertical" />
+    <TextView
+        android:text="(max. 72)"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:id="@+id/capacityText"
+        android:textSize="8sp"
+        android:layout_marginLeft="5sp"
+        android:gravity="center_vertical" />
+</LinearLayout>

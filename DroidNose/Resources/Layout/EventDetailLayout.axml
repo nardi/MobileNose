@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="8dp"
+    android:id="@+id/linearLayout5">
+    <TextView
+        android:text="Computerpracticum Datastructuren (BINDS6)"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/titleText"
+        android:textSize="20sp"
+        android:gravity="center_horizontal"
+        android:textStyle="bold" />
+    <TextView
+        android:text="Group IN"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/groupText"
+        android:textSize="18sp"
+        android:gravity="center_horizontal"
+        android:textStyle="normal"
+        android:paddingTop="2dp" />
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout1"
+        android:paddingTop="8dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp">
+        <TextView
+            android:text="Bachelor Informatica"
+            android:id="@+id/programmeText"
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="0" />
+        <TextView
+            android:text="maandag 06-02-2013"
+            android:id="@+id/dateText"
+            android:textSize="15sp"
+            android:layout_width="match_parent"
+            android:layout_height="fill_parent"
+            android:layout_weight="1"
+            android:gravity="right" />
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/linearLayout1"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp">
+        <TextView
+            android:text="week 6 - 11"
+            android:id="@+id/weekText"
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" />
+        <TextView
+            android:text="13:00 - 15:00"
+            android:id="@+id/timeText"
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="fill_parent"
+            android:layout_weight="0" />
+    </LinearLayout>
+    <DroidNose.BorderedLinearLayout
+        android:orientation="vertical"
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/detailsLayout"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="4dp"
+        android:paddingBottom="4dp"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp" />
+</LinearLayout>
