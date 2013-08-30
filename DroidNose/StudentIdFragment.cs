@@ -16,6 +16,7 @@ using MobileNose;
 namespace DroidNose
 {
 	using LayoutParams = ViewGroup.LayoutParams;
+    using Android.Graphics;
 
 	public class StudentIdFragment : Android.Support.V4.App.DialogFragment
 	{
@@ -47,13 +48,14 @@ namespace DroidNose
 
 		public override Dialog OnCreateDialog(Bundle savedInstanceState)
 		{
-			AlertDialog.Builder builder = new AlertDialog.Builder(Activity);
+			var builder = new AlertDialog.Builder(Activity);
 
 			int padding = Utils.DpToPx(0.02f * Utils.DisplayMetrics.WidthPixels);
 
 			LinearLayout layout = new LinearLayout(Activity);
 			layout.Orientation = Orientation.Vertical;
 			layout.SetPadding(padding, padding, padding, padding);
+            layout.SetBackgroundColor(Color.White);
 
 			text = new TextView(Activity);
 			text.LayoutParameters = new LayoutParams(LayoutParams.MatchParent, LayoutParams.WrapContent);

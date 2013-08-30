@@ -89,8 +89,9 @@ namespace DroidNose
 					layout.SetPadding(0, HourHeight / 2, 0, 0);
                     int numHours = HourView.EndHour - HourView.StartHour + 1;
 					layout.LayoutParameters.Width = LayoutParams.MatchParent;
-                    layout.SetMinimumHeight(numHours * HourView.HourHeight);
-                    Console.WriteLine("MinHeight: " + numHours * HourView.HourHeight);
+                    layout.LayoutParameters.Height = numHours * HourView.HourHeight;
+                    //layout.SetMinimumHeight(numHours * HourView.HourHeight);
+                    //Console.WriteLine("MinHeight: " + numHours * HourView.HourHeight);
 					dayScrollView.AddView(layout);
 				}
 			}

@@ -11,9 +11,15 @@
             res/values-vXX/styles.xml, while customizations related to
             backward-compatibility can go here.
         -->
-      <item name="android:windowTitleBackgroundStyle">@style/WindowTitleBackground</item>
+      <item name="android:alertDialogStyle">@style/Dialog</item>
+      <!-- <item name="android:windowTitleBackgroundStyle">@style/WindowTitleBackground</item> -->
     </style>
 
+    <style name="Dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:background">@android:color/white</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+  
     <style name="WindowTitleBackground">
         <item name="android:background">@color/title_background</item> 
     </style>

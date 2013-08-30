@@ -7,26 +7,35 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileNose.Android", "Mobil
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DroidNose", "DroidNose\DroidNose.csproj", "{D9E71DA3-FAC7-4360-BFB3-8337F2A1BADB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mono.Android.Crasher", "Mono.Android.Crasher\Mono.Android.Crasher.csproj", "{4ECE2C97-13A0-46D6-95D1-7BB50A48267B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{CBED83BD-D8F8-4A00-9299-677FA76C259E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CBED83BD-D8F8-4A00-9299-677FA76C259E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CBED83BD-D8F8-4A00-9299-677FA76C259E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CBED83BD-D8F8-4A00-9299-677FA76C259E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4ECE2C97-13A0-46D6-95D1-7BB50A48267B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4ECE2C97-13A0-46D6-95D1-7BB50A48267B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4ECE2C97-13A0-46D6-95D1-7BB50A48267B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4ECE2C97-13A0-46D6-95D1-7BB50A48267B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{99EDB588-BE08-4720-8EEC-0D3EEE919FD4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{99EDB588-BE08-4720-8EEC-0D3EEE919FD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99EDB588-BE08-4720-8EEC-0D3EEE919FD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99EDB588-BE08-4720-8EEC-0D3EEE919FD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBED83BD-D8F8-4A00-9299-677FA76C259E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBED83BD-D8F8-4A00-9299-677FA76C259E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBED83BD-D8F8-4A00-9299-677FA76C259E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBED83BD-D8F8-4A00-9299-677FA76C259E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D9E71DA3-FAC7-4360-BFB3-8337F2A1BADB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D9E71DA3-FAC7-4360-BFB3-8337F2A1BADB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9E71DA3-FAC7-4360-BFB3-8337F2A1BADB}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{D9E71DA3-FAC7-4360-BFB3-8337F2A1BADB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9E71DA3-FAC7-4360-BFB3-8337F2A1BADB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D9E71DA3-FAC7-4360-BFB3-8337F2A1BADB}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = DroidNose\DroidNose.csproj
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

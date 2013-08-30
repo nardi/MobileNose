@@ -4,6 +4,7 @@ using Android.Content;
 using Android.OS;
 using Android.Widget;
 using MobileNose;
+using Android.Views;
 
 namespace DroidNose
 {
@@ -41,7 +42,8 @@ namespace DroidNose
 			yearPicker.Value = currentYear;
 			yearPicker.ValueChanged += (sender, vce) => { currentYear = vce.NewVal; };
 
-			return new AlertDialog.Builder(Activity).SetTitle("Kies een week")
+			return new AlertDialog.Builder(new ContextThemeWrapper(Activity, Resource.Style.AppTheme))
+                .SetTitle("Kies een week")
 				.SetView(layout).SetPositiveButton("Klaar!",
                     (sender, dce) => OnWeekPicked(new Week(currentYear, currentWeek)))
                 .SetNegativeButton("Laat maar", (sender, dce) => {}).Create();

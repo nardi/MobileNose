@@ -146,7 +146,7 @@ namespace DroidNose
 			SetContentView(layout);
 		}
 
-		private void SendFeedback(string type, string detail)
+		public static void SendFeedback(string type, string detail)
 		{
 			var request = WebRequest.Create(ServiceUrl);
 			request.Method = "POST";

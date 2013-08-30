@@ -4,6 +4,7 @@ using Android.Content;
 using Android.OS;
 using Android.Widget;
 using MobileNose;
+using Android.Views;
 
 namespace DroidNose
 {
@@ -30,7 +31,8 @@ namespace DroidNose
 
 		public override Dialog OnCreateDialog(Bundle savedInstanceState)
 		{
-			DatePickerDialog = new BetterDatePickerDialog(Activity, null, StartDay.Year, StartDay.Month - 1, StartDay.Number);
+			DatePickerDialog = new BetterDatePickerDialog(Activity, null,
+                StartDay.Year, StartDay.Month - 1, StartDay.Number);
 
 			if (Build.VERSION.SdkInt >= BuildVersionCodes.Honeycomb)
 			{
@@ -73,6 +75,7 @@ namespace DroidNose
 				Year = year;
 				MonthOfYear = monthOfYear;
 				DayOfMonth = dayOfMonth;
+                SetInverseBackgroundForced(true);
 			}
 
 			private string _title = null;

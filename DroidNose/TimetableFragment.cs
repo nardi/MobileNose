@@ -195,7 +195,8 @@ namespace DroidNose
 		{
 			int itemId = 0, order = 0;
 			dateSubMenu = menu.AddSubMenu(1, itemId++, order++, "Datumopties");
-			dateSubMenu.Item.SetShowAsAction(ShowAsAction.Always);
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.Honeycomb)
+                dateSubMenu.Item.SetShowAsAction(ShowAsAction.Always);
 			dateSubMenu.Item.SetIcon(Android.Resource.Drawable.IcMenuToday);
 			menuItems.Add(dateSubMenu.Item);
 			if (Build.VERSION.SdkInt >= BuildVersionCodes.Honeycomb)
@@ -208,7 +209,8 @@ namespace DroidNose
 			toToday = dateSubMenu.Add(1, itemId++, order++, "Naar vandaag");
 			menuItems.Add(toToday);
 			newStudentId = menu.Add(2, itemId++, order++, "Verander studentnummer");
-			newStudentId.SetShowAsAction(ShowAsAction.IfRoom);
+            if (Build.VERSION.SdkInt >= BuildVersionCodes.Honeycomb)
+			    newStudentId.SetShowAsAction(ShowAsAction.IfRoom);
 			newStudentId.SetIcon(Android.Resource.Drawable.IcMenuMyCalendar);
 			menuItems.Add(newStudentId);
 			manualRefresh = menu.Add(3, itemId++, order++, "Handmatig verversen");

@@ -17,16 +17,29 @@ namespace DroidNose
 {
 	public class DateTitleView : TextView
 	{
-		public DateTitleView(Context context, Day day) : base(context)
+		public DateTitleView(Context context, Day date) : base(context)
 		{
-			if (day != null)
-				Text = day.StartTime.ToString("dddd d MMMM");
+			Date = date;
 			TextSize = 14;
 
 			int padding = Utils.DpToPx(8);
 			SetPadding(0, padding, 0, padding);
 			Gravity = GravityFlags.Center;
 			LayoutParameters = new LayoutParams(LayoutParams.MatchParent, Utils.DpToPx(40));
+		}
+
+		private Day _Date;
+		public Day Date
+		{
+			get { return _Date; }
+			set
+			{
+				_Date = value;
+				if (_Date == null)
+					Text = "";
+				else
+					Text = _Date.StartTime.ToString("dddd d MMMM");
+			}
 		}
 	}
 }
