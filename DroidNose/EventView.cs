@@ -72,14 +72,21 @@ namespace DroidNose
 			course.SetTextColor(Color.Black);
 			textLayout.AddView(course);
 
-			TextView other = new TextView(Context);
-			other.Gravity = GravityFlags.CenterHorizontal;
-			other.TextSize = 15;
-            other.Text = Event.Type;
+			TextView locations = new TextView(Context);
+			locations.Gravity = GravityFlags.CenterHorizontal;
+			locations.TextSize = 15;
+            locations.Text = Event.Type;
             if (Event.Locations.Count > 0)
-                other.Text += ", " + Event.Locations.JoinStrings(", ");
-			other.SetTextColor(Color.Black);
-			textLayout.AddView(other);
+                locations.Text += ", " + Event.Locations.JoinStrings(", ");
+			locations.SetTextColor(Color.Black);
+			textLayout.AddView(locations);
+
+			/* TextView staff = new TextView(Context);
+			staff.Gravity = GravityFlags.CenterHorizontal;
+			staff.TextSize = 15;
+			staff.Text = Event.Staff.JoinStrings(", ");
+			staff.SetTextColor(Color.Black);
+			textLayout.AddView(staff); */
 		}
 
 		public void SetBorder(bool l, bool t, bool b, bool r)

@@ -1,9 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="DroidNose\Properties\AssemblyInfo.cs">
+    <Files>
+      <File FileName="DroidNose\Properties\AssemblyInfo.cs" Line="14" Column="34" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="G:\Dropbox\MobileNose\DroidNose\LogDataReportProvider.cs" line="17" column="1" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.DroidNose AndroidDeviceId-Debug="HT06DPL09193" />
+  <MonoDevelop.Ide.ItemProperties.DroidNose AndroidDeviceId-Debug="HT06DPL09193" AndroidDeviceId-Release="HT06DPL09193" />
 </Properties>

@@ -90,7 +90,6 @@ namespace Mono.Android.Crasher.Utils
         /// </summary>
         /// <param name="context"><see cref="Context"/> for the application being reported.</param>
         /// <returns>A String representation of the content of the default Display of the Window Service.</returns>
-        [Obsolete("IWindowManager is not accessible in MonoDroid 1.9.2")]
         public static string GetDisplayDetails(Context context)
         {
             try

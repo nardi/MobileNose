@@ -47,6 +47,9 @@ namespace MobileNose
                             groups.Add(group);
                     }
 
+					if (course == null)
+						course = new Course(0, "", "", academicYear);
+
                     events.Add(new Event(tta.ID, startTime, duration, course, groups, tta.ActivityType,
                         tta.Description, new HashSet<string>(), new List<string>()));
 
@@ -88,7 +91,7 @@ namespace MobileNose
                 {
                     if (DateTime.UtcNow - Student.UpdateTime > Timetable.UpdateInterval)
                     {
-                        Student = Student.Download(Student.Id);
+						Student.Update();
                     }
 
                     var events = base.Update(week);

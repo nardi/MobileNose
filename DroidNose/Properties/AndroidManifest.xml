@@ -1,8 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" android:versionName="1.0" package="nl.datanose.droidnose" android:installLocation="preferExternal">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="1" package="nl.datanose.droidnose" android:installLocation="preferExternal" android:versionName="none">
 	<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="17" />
 	<application android:label="DataNose" android:icon="@drawable/Icon" android:theme="@style/AppTheme" android:allowBackup="true" />
-	<uses-permission android:name="android.permission.READ_LOGS" />
-	<uses-permission android:name="android.permission.DUMP" />
 	<uses-permission android:name="android.permission.INTERNET" />
 </manifest>

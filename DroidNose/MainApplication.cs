@@ -9,8 +9,12 @@ using Mono.Android.Crasher.Data.Submit;
 
 namespace DroidNose
 {
-    [Application]
-    [Crasher]//(UseCustomData = true, CustomDataProviders = new[] { typeof(LogDataReportProvider) })]
+	#if DEBUG
+	[Application(Debuggable=true)]
+	#else
+	[Application(Debuggable=false)]
+	#endif
+    [Crasher(UseCustomData = true, CustomDataProviders = new[] { typeof(CustomDataReportProvider) })]
     public class MainApplication : Application
     {
         public MainApplication(IntPtr javaReference, JniHandleOwnership transfer)

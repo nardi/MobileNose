@@ -13,15 +13,23 @@ namespace MobileNose
 		public IDictionary<Course, Group> Groups { get; set; }
 		public DateTime UpdateTime { get; set; }
 
+		public void AddCourse(TTCourse ttc)
+		{
+			Courses.Add(new Course(ttc.ID,
+			                       ttc.CatalogNumber,
+			                       Utils.UnescapeUnicode(ttc.Name),
+			                       ttc.AcademicYear));
+		}
+
         public void Update()
         {
             var svc = new TimetableService();
             var courseUri = new Uri("GetCoursesByStudent?id=" + Id, UriKind.Relative);
             var groupUri = new Uri("GetGroupsByStudent?id=" + Id, UriKind.Relative);
             var responses = svc.ExecuteBatch(new DataServiceRequest<TTCourse>(courseUri),
-                                                new DataServiceRequest<TTGroup>(groupUri));
+                                             new DataServiceRequest<TTGroup>(groupUri));
 
-            var courses = new HashSet<Course>();
+            Courses = new HashSet<Course>();
             var groups = new Dictionary<Course, Group>();
 
             foreach (QueryOperationResponse response in responses)
@@ -30,24 +38,20 @@ namespace MobileNose
                 {
                     foreach (TTCourse ttc in response)
                     {
-                        courses.Add(new Course(ttc.ID,
-                                                ttc.CatalogNumber,
-                                                Utils.UnescapeUnicode(ttc.Name),
-                                                ttc.AcademicYear));
+						AddCourse(ttc);
                     }
                 }
                 else if (response.Query.ElementType == typeof(TTGroup))
                 {
                     foreach (TTGroup ttg in response)
                     {
-                        var course = courses.FirstOrDefault(c => c.CatalogNumber == ttg.CatalogNumber);
+                        var course = Courses.FirstOrDefault(c => c.CatalogNumber == ttg.CatalogNumber);
                         if (course != null)
                             groups[course] = new Group(ttg.ID, ttg.Identifier, course);
                     }
                 }
             }
 
-            Courses = courses;
             Groups = groups;
             UpdateTime = DateTime.UtcNow;
         }

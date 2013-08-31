@@ -21,6 +21,12 @@ namespace DroidNose
 		public static readonly string StudentId = "StudentId";
 		public static readonly int PreloadDays = 6;
 
+		public static int CurrentStudentId
+		{
+			get;
+			private set;
+		}
+
 		public TimetableFragment() : base()
 		{
 			RetainInstance = true;
@@ -76,6 +82,7 @@ namespace DroidNose
 		{
 			ShowLoadingView();
 			Timetable = null;
+			CurrentStudentId = studentId;
 			StudentTimetable.Load.AsyncInvoke(studentId, ShowTimetableView, e =>
 			{
                 Console.WriteLine(e);

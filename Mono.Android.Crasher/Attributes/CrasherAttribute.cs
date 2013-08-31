@@ -73,7 +73,8 @@ namespace Mono.Android.Crasher.Attributes
             get { return _customDataProviders; }
             set
             {
-                if (!value.All(type => type.IsAssignableFrom(typeof(ICustomReportDataProvider))))
+				var baseType = typeof(ICustomReportDataProvider);
+                if (!value.All(type => baseType.IsAssignableFrom(type)))
                 {
                     throw new ArgumentException("Some of types are not an instance of ICustomReportDataProvider");
                 }

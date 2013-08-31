@@ -7,11 +7,11 @@ using Java.IO;
 
 namespace DroidNose
 {
-    public class LogDataReportProvider : ICustomReportDataProvider
+    public class CustomDataReportProvider : ICustomReportDataProvider
     {
         public IDictionary<string, string> GetReportData(Context context)
         {
-            StringBuilder log = new StringBuilder();
+            /* StringBuilder log = new StringBuilder();
             try
             {
                 var process = Runtime.GetRuntime().Exec("su -c logcat -d");
@@ -24,11 +24,12 @@ namespace DroidNose
             catch (Exception e)
             {
 				log.Append(e.Message);
-            }
+            } */
             
             return new Dictionary<string, string>
             {
-                { "logcat",  log.ToString() }
+				{ "StudentId", TimetableFragment.CurrentStudentId.ToString() }//,
+                //{ "logcat",  log.ToString() }
             };
         }
     }
