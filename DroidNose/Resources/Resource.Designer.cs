@@ -46,6 +46,9 @@ namespace DroidNose
 		public partial class Color
 		{
 			
+			// aapt resource value: 0x7f050002
+			public const int link = 2131034114;
+			
 			// aapt resource value: 0x7f050000
 			public const int title_background = 2131034112;
 			

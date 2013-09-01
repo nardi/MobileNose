@@ -51,7 +51,7 @@ namespace MobileNose
 						course = new Course(0, "", "", academicYear);
 
                     events.Add(new Event(tta.ID, startTime, duration, course, groups, tta.ActivityType,
-                        tta.Description, new HashSet<string>(), new List<string>()));
+                        tta.Description, new HashSet<Location>(), new List<string>()));
 
                     locationStaffRequests.Add(new DataServiceRequest<TTLocation>(
                         new Uri("GetLocationsByActivity?id=" + tta.ID, UriKind.Relative)));
@@ -70,7 +70,8 @@ namespace MobileNose
                         var ev = events.Find(e => e.Id == activityId);
                         if (response.Query.ElementType == typeof (TTLocation))
                         {
-                            foreach (TTLocation ttl in response) ev.Locations.Add(ttl.Name);
+							foreach (TTLocation ttl in response)
+								ev.Locations.Add(new Location(ttl.ID, ttl.Name, ttl.InfoURL));
                         }
                         else if (response.Query.ElementType == typeof(TTStaff))
                         {

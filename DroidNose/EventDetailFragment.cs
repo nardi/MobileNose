@@ -44,6 +44,7 @@ namespace DroidNose
             var groupTexts = new string[length];
             var staffTexts = new string[length];
             var locationTexts = new string[length];
+			var locationInfo = new string[length];
             var capacityTexts = new string[length];
 
             int i = 0;
@@ -51,7 +52,8 @@ namespace DroidNose
             {
                 groupTexts[i] = ev.Groups.Count > 0 ? "Groep " + ev.Groups.First().Identifier : "";
                 staffTexts[i] = ev.Staff.Count > 0 ? ev.Staff.JoinStrings(", ") : "";
-                locationTexts[i] = location;
+                locationTexts[i] = location.Name;
+				locationInfo[i] = location.InfoUrl;
                 capacityTexts[i] = "";
                 i++;
             }
@@ -59,6 +61,7 @@ namespace DroidNose
             arguments.PutStringArray("groupTexts", groupTexts);
             arguments.PutStringArray("staffTexts", staffTexts);
             arguments.PutStringArray("locationTexts", locationTexts);
+			arguments.PutStringArray("locationInfo", locationInfo);
             arguments.PutStringArray("capacityTexts", capacityTexts);
 
             return new EventDetailFragment { Arguments = arguments };
@@ -88,6 +91,7 @@ namespace DroidNose
             var groupTexts = Arguments.GetStringArray("groupTexts");
             var staffTexts = Arguments.GetStringArray("staffTexts");
             var locationTexts = Arguments.GetStringArray("locationTexts");
+			var locationInfo = Arguments.GetStringArray("locationInfo");
             var capacityTexts = Arguments.GetStringArray("capacityTexts");
             var length = locationTexts.Length;
 
@@ -105,10 +109,15 @@ namespace DroidNose
                     details.FindViewById<TextView>(Resource.Id.staffText).Text = staffTexts[i];
                 else
                     details.FindViewById<TextView>(Resource.Id.staffText).Visibility = ViewStates.Gone;
-                details.FindViewById<TextView>(Resource.Id.locationText).Text
-                    = locationTexts[i];
-                details.FindViewById<TextView>(Resource.Id.capacityText).Text
-                    = capacityTexts[i];
+				var locationView = details.FindViewById<TextView>(Resource.Id.locationText);
+				locationView.Text = locationTexts[i];
+				locationView.Clickable = true;
+				var locationId = i;
+				locationView.Click += (sender, e) => 
+				{
+					StartActivity(new Intent(Intent.ActionView, Android.Net.Uri.Parse(locationInfo[locationId])));
+				};
+                details.FindViewById<TextView>(Resource.Id.capacityText).Text = capacityTexts[i];
                 detailsLayout.AddView(details);
             }
 

@@ -76,8 +76,8 @@ namespace DroidNose
 			locations.Gravity = GravityFlags.CenterHorizontal;
 			locations.TextSize = 15;
             locations.Text = Event.Type;
-            if (Event.Locations.Count > 0)
-                locations.Text += ", " + Event.Locations.JoinStrings(", ");
+			if (Event.Locations.Count > 0)
+				locations.Text += ", " + Event.Locations.Select(l => l.Name).JoinStrings(", ");
 			locations.SetTextColor(Color.Black);
 			textLayout.AddView(locations);
 

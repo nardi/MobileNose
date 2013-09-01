@@ -11,11 +11,11 @@ namespace MobileNose
         public ICollection<Group> Groups { get; set; }
 		public string Type { get; set; }
         public string Description { get; set; }
-		public ISet<string> Locations { get; set; }
+		public ISet<Location> Locations { get; set; }
 		public ICollection<string> Staff { get; set; }
 
 		public Event(int id, DateTime startTime, TimeSpan duration, Course course, ICollection<Group> groups,
-		             string type, string description, ISet<string> locations, ICollection<string> staff)
+		             string type, string description, ISet<Location> locations, ICollection<string> staff)
 			: base(startTime, duration)
 		{
 			Id = id;
