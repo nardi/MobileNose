@@ -32,7 +32,8 @@ namespace DroidNose
 			: base(context, startHour, endHour)
 		{
 			ScrollView = new HourScrollView(context, this);
-            ScrollView.OverScrollMode = OverScrollMode.Never;
+			if (Build.VERSION.SdkInt >= BuildVersionCodes.GingerbreadMr1)
+            	ScrollView.OverScrollMode = OverScrollMode.Never;
 			AddView(ScrollView);
 
 			MainLayout = new LinearLayout(context);
