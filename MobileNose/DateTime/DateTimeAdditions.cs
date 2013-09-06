@@ -7,7 +7,7 @@ namespace MobileNose
 	{
 		public static bool IsDuring(this DateTime t, TimePeriod tp)
 		{
-			return (t > tp.StartTime && t < tp.EndTime) || (t == tp.StartTime);
+			return tp.StartTime <= t && t < tp.EndTime;
 		}
 
 		public static Calendar StandardCalendar { get; set; }

@@ -17,7 +17,7 @@ namespace DroidNose
 	{
 		private static readonly int DefaultNumHours =
 			TimeLayout.DefaultEndHour - TimeLayout.DefaultStartHour + 1;
-		private static readonly int MinimumViewHeight = 600; //dp
+		private static readonly int MinimumViewHeight = 550; //dp
 		private static readonly int MaximumViewHeight = 800; //dp
 
 		public LinkedScrollView ScrollView

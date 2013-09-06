@@ -115,14 +115,19 @@ namespace MobileNose
 
 		public IOrderedEnumerable<Event> GetEvents(Day day, Action<Day> onUpdateStart, Action<Day, IEnumerable<Event>> onUpdateFinish, Action<Exception> onError)
 		{
-			var currentDayEvents = _events.Where(e => e.StartTime.IsDuring(day)).OrderBy(ev => ev);
+			var currentDayEvents = new List<Event>();
+			foreach (var ev in _events)
+			{
+				if (ev.StartsDuring(day))
+					currentDayEvents.Add(ev);
+			}
 			Week week = day.Week;
 			if (UpdateNeeded(week))
 			{
 				Utils.RunOnUiThread(onUpdateStart, day);
 				Update.AsyncInvoke(week, events => onUpdateFinish(day, events), onError);
 			}
-			return currentDayEvents;
+			return currentDayEvents.OrderBy(ev => ev);
 		}
 	}
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Android.Content;
+using Android.OS;
 using Android.Views;
 using Android.Widget;
 using MobileNose;
@@ -82,7 +83,8 @@ namespace DroidNose
 					dayScrollView = new LinkedScrollView(Context);
 					dayScrollView.LinkTo(HourView.ScrollView);
 					dayScrollView.VerticalScrollBarEnabled = showScroll;
-                    dayScrollView.OverScrollMode = OverScrollMode.Never;
+					if (Build.VERSION.SdkInt >= BuildVersionCodes.GingerbreadMr1)
+                    	dayScrollView.OverScrollMode = OverScrollMode.Never;
 					AddView(dayScrollView);
 
 					RelativeLayout layout = MakeLayout(dayEvents, StartHour);

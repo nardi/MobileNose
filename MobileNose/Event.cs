@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace MobileNose
 {
     [Serializable]
-	public class Event : TimePeriod
+	public class Event : TimePeriod, IEquatable<Event>
 	{
 		public int Id { get; set; }
 		public Course Course { get; set; }
@@ -32,6 +32,36 @@ namespace MobileNose
 			return Type + " " + Course.Name + " op " + StartTime.ToShortDateString() + " van " +
 				StartTime.ToShortTimeString() + " tot " + EndTime.ToShortTimeString();
 		}
+
+        public bool Equals(Event ev)
+        {
+            return Id == ev.Id;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (obj is Event)
+                return Equals(obj as Event);
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return Id.GetHashCode();
+        }
+
+        public int CompareTo(Event ev)
+        {
+            var timeCompare = base.CompareTo(ev);
+            if (timeCompare == 0 && !this.Equals(ev))
+                return Id < ev.Id ? -1 : 1;
+            return timeCompare;
+        }
+
+        public override int CompareTo(object obj)
+        {
+            return CompareTo(obj as Event);
+        }
 	}
 }
 

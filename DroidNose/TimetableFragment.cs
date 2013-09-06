@@ -21,11 +21,7 @@ namespace DroidNose
 		public static readonly string StudentId = "StudentId";
 		public static readonly int PreloadDays = 6;
 
-		public static int CurrentStudentId
-		{
-			get;
-			private set;
-		}
+		public static int CurrentStudentId { get; private set; }
 
 		public TimetableFragment() : base()
 		{
@@ -224,6 +220,9 @@ namespace DroidNose
 			menuItems.Add(manualRefresh);
 			feedback = menu.Add(4, itemId++, order++, "Feedback geven");
 			menuItems.Add(feedback);
+
+            foreach (IMenuItem m in menuItems)
+                m.SetVisible(!IsLoading);
 		}
 
 		public override bool OnOptionsItemSelected(IMenuItem item)

@@ -47,8 +47,10 @@ namespace MobileNose
                             groups.Add(group);
                     }
 
-					if (course == null)
-						course = new Course(0, "", "", academicYear);
+                    if (course == null)
+                    {
+                        course = new Course(0, tta.Description, tta.Description, academicYear);
+                    }
 
                     events.Add(new Event(tta.ID, startTime, duration, course, groups, tta.ActivityType,
                         tta.Description, new HashSet<Location>(), new List<string>()));

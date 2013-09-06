@@ -112,9 +112,9 @@ namespace MobileNose
 			RunOnUiThread(() => action(arg));
 		}
 
-		public static Task AsyncInvoke<T, TResult>(this Func<T, TResult> toInvoke, T arg, Action<TResult> callback, Action<Exception> onError)
+		public static Thread AsyncInvoke<T, TResult>(this Func<T, TResult> toInvoke, T arg, Action<TResult> callback, Action<Exception> onError)
 		{
-			return Task.Factory.StartNew(() =>
+			var thread = new Thread(new ThreadStart(() =>
 			{
 				try
 				{
@@ -124,12 +124,14 @@ namespace MobileNose
 				{
 					RunOnUiThread(onError, e);
 				}
-			});
+            }));
+            thread.Start();
+            return thread;
 		}
 
-		public static Task AsyncInvoke<TResult>(this Func<TResult> toInvoke, Action<TResult> callback, Action<Exception> onError)
+		public static Thread AsyncInvoke<TResult>(this Func<TResult> toInvoke, Action<TResult> callback, Action<Exception> onError)
 		{
-			return Task.Factory.StartNew(() =>
+            var thread = new Thread(new ThreadStart(() =>
 			{
 				try
 				{
@@ -139,12 +141,14 @@ namespace MobileNose
 				{
 					RunOnUiThread(onError, e);
 				}
-			});
+            }));
+            thread.Start();
+            return thread;
 		}
 
-		public static Task AsyncInvoke<T>(this Action<T> toInvoke, T arg, Action callback, Action<Exception> onError)
+		public static Thread AsyncInvoke<T>(this Action<T> toInvoke, T arg, Action callback, Action<Exception> onError)
 		{
-			return Task.Factory.StartNew(() =>
+            var thread = new Thread(new ThreadStart(() =>
 			{
 				try
 				{
@@ -155,12 +159,14 @@ namespace MobileNose
 				{
 					RunOnUiThread(onError, e);
 				}
-			});
+            }));
+            thread.Start();
+            return thread;
 		}
 
-		public static Task AsyncInvoke(this Action toInvoke, Action callback, Action<Exception> onError)
+		public static Thread AsyncInvoke(this Action toInvoke, Action callback, Action<Exception> onError)
 		{
-			return Task.Factory.StartNew(() =>
+            var thread = new Thread(new ThreadStart(() =>
 			{
 				try
 				{
@@ -171,7 +177,9 @@ namespace MobileNose
 				{
 					RunOnUiThread(onError, e);
 				}
-			});
+            }));
+            thread.Start();
+            return thread;
 		}
 
 	    public static Task ContinueHere(this Task task, Action<Task> continuationAction, TaskContinuationOptions taskContinuationOptions)

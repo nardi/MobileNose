@@ -59,7 +59,7 @@ namespace MobileNose
 			return StartTime.CompareTo(tp.StartTime);
 		}
 
-		public int CompareTo(object obj)
+        public virtual int CompareTo(object obj)
 		{
 			return CompareTo(obj as TimePeriod);
 		}

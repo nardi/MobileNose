@@ -6,6 +6,7 @@ using MobileNose;
 using Mono.Android.Crasher;
 using Mono.Android.Crasher.Attributes;
 using Mono.Android.Crasher.Data.Submit;
+using System.Threading;
 
 namespace DroidNose
 {

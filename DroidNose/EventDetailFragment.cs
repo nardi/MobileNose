@@ -115,7 +115,11 @@ namespace DroidNose
 				var locationId = i;
 				locationView.Click += (sender, e) => 
 				{
-					StartActivity(new Intent(Intent.ActionView, Android.Net.Uri.Parse(locationInfo[locationId])));
+                    try
+                    {
+                        StartActivity(new Intent(Intent.ActionView, Android.Net.Uri.Parse(locationInfo[locationId])));
+                    }
+                    catch {}
 				};
                 details.FindViewById<TextView>(Resource.Id.capacityText).Text = capacityTexts[i];
                 detailsLayout.AddView(details);
