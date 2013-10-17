@@ -1,15 +1,15 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="DroidNose\DayView.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="DroidNose\TimetableFragment.cs">
     <Files>
-      <File FileName="DroidNose\DayView.cs" Line="176" Column="1" />
-      <File FileName="DroidNose\HourView.cs" Line="16" Column="36" />
-      <File FileName="DroidNose\Properties\AndroidManifest.xml" Line="3" Column="16" />
-      <File FileName="DroidNose\TimetableFragment.cs" Line="8" Column="18" />
-      <File FileName="MobileNose\Timetable.cs" Line="121" Column="30" />
+      <File FileName="DroidNose\DayView.cs" Line="171" Column="1" />
+      <File FileName="DroidNose\HourView.cs" Line="1" Column="1" />
+      <File FileName="DroidNose\Properties\AndroidManifest.xml" Line="1" Column="1" />
+      <File FileName="DroidNose\TimetableFragment.cs" Line="199" Column="1" />
+      <File FileName="MobileNose\Timetable.cs" Line="1" Column="1" />
       <File FileName="DroidNose\EventView.cs" Line="1" Column="1" />
-      <File FileName="MobileNose\DateTime\TimePeriod.cs" Line="44" Column="1" />
-      <File FileName="MobileNose\DateTime\DateTimeAdditions.cs" Line="8" Column="34" />
+      <File FileName="MobileNose\DateTime\TimePeriod.cs" Line="1" Column="1" />
+      <File FileName="MobileNose\DateTime\DateTimeAdditions.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -21,5 +21,5 @@
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.DroidNose AndroidDeviceId-Debug="HT06DPL09193" AndroidDeviceId-Release="HT06DPL09193" />
+  <MonoDevelop.Ide.ItemProperties.DroidNose AndroidDeviceId-Debug="4df1ebc7598b8f6b" />
 </Properties>

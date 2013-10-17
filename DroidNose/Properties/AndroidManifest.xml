@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="nl.datanose.droidnose" android:installLocation="preferExternal" android:versionCode="4" android:versionName="none">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="nl.datanose.droidnose" android:installLocation="preferExternal" android:versionCode="4" android:versionName="dc56623">
 	<uses-sdk android:minSdkVersion="7" android:targetSdkVersion="17" />
 	<application android:label="DataNose" android:icon="@drawable/Icon" android:theme="@style/AppTheme" android:allowBackup="true" />
 	<uses-permission android:name="android.permission.INTERNET" />

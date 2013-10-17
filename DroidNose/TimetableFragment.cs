@@ -19,6 +19,7 @@ namespace DroidNose
 	{
 		public static readonly string PreferencesFile = "DroidNoseSettings";
 		public static readonly string StudentId = "StudentId";
+		public static readonly string StudentIdHistory = "StudentIdHistory";
 		public static readonly int PreloadDays = 6;
 
 		public static int CurrentStudentId { get; private set; }
@@ -66,7 +67,7 @@ namespace DroidNose
 		private void TryLoadStudentId()
 		{
 			var settings = Activity.GetSharedPreferences(PreferencesFile, FileCreationMode.Private);
-			int studentId = settings.GetInt(StudentId, -1);
+			var studentId = settings.GetInt(StudentId, -1);
 
 			if (studentId != -1)
 				LoadTimetableUsingStudentId(studentId);
@@ -130,8 +131,7 @@ namespace DroidNose
 		{
 			IsLoading = true;
 
-			foreach (IMenuItem m in menuItems)
-				m.SetVisible(false);
+			ShowOptionMenu(false);
 			
 			SetContentView(new LoadingView(Activity, "Rooster wordt geladen..."));
 		}
@@ -175,11 +175,15 @@ namespace DroidNose
 			Timetable = timetable;
 			StartDay = startDay;
 
-			foreach (IMenuItem m in menuItems)
-				m.SetVisible(true);
+			ShowOptionMenu(true);
+
+			var settings = Activity.GetSharedPreferences(PreferencesFile, FileCreationMode.Private);
+			var studentIdHistory = settings.GetStringSet(StudentIdHistory, null);
+			studentIdHistory.Add(Timetable.Student.Id);
 
 			var settingsEditor = Activity.GetSharedPreferences(PreferencesFile, FileCreationMode.Private).Edit();
 			settingsEditor.PutInt(StudentId, Timetable.Student.Id);
+			settingsEditor.PutStringSet(StudentIdHistory, studentIdHistory);
 			settingsEditor.Commit();
 
 			Day currentDay = startDay;
@@ -196,6 +200,8 @@ namespace DroidNose
 
 		public override void OnCreateOptionsMenu(IMenu menu, MenuInflater inflater)
 		{
+			menuItems.Clear();
+
 			int itemId = 0, order = 0;
 			dateSubMenu = menu.AddSubMenu(1, itemId++, order++, "Datumopties");
             if (Build.VERSION.SdkInt >= BuildVersionCodes.Honeycomb)
@@ -221,8 +227,7 @@ namespace DroidNose
 			feedback = menu.Add(4, itemId++, order++, "Feedback geven");
 			menuItems.Add(feedback);
 
-            foreach (IMenuItem m in menuItems)
-                m.SetVisible(!IsLoading);
+            ShowOptionMenu(!IsLoading);
 		}
 
 		public override bool OnOptionsItemSelected(IMenuItem item)
@@ -271,6 +276,16 @@ namespace DroidNose
 			}
 			
             return base.OnOptionsItemSelected(item);
+		}
+
+		private void ShowOptionMenu(bool show)
+		{
+			Utils.RunOnUiThread (() =>
+			{
+				Console.WriteLine ((show ? "Showing " : "Hiding ") + menuItems.Count + " menu items");
+				foreach (IMenuItem m in menuItems)
+					m.SetVisible (show);
+			});
 		}
 	}
 }
