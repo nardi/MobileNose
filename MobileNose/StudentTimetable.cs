@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Services.Client;
 using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Threading.Tasks;
 
 namespace MobileNose
 {
@@ -86,19 +87,17 @@ namespace MobileNose
             return events;
         }
 
-        public override Func<Week, IOrderedEnumerable<Event>> Update
+        public override void Update(Week week, Action<IEnumerable<Event>> onResult, Action<Exception> onError)
         {
-            get
+            if (DateTime.UtcNow - Student.UpdateTime > Timetable.UpdateInterval)
             {
-                return week =>
+				Task.Run(() => Student.Update())
+                    .ContinueHere(task => Update(week, onResult, onError));
+            }
+            else
+            {
+                base.Update(week, events => 
                 {
-                    if (DateTime.UtcNow - Student.UpdateTime > Timetable.UpdateInterval)
-                    {
-						Student.Update();
-                    }
-
-                    var events = base.Update(week);
-
                     try
                     {
                         using (var file = Utils.CreateFile("StudentTimetable_" + Student.Id))
@@ -111,8 +110,8 @@ namespace MobileNose
                         Console.WriteLine(e);
                     }
 
-                    return events;
-                };
+                    onResult(events);
+                }, Console.WriteLine);
             }
         }
 
