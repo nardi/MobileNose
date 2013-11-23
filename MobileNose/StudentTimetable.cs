@@ -98,19 +98,20 @@ namespace MobileNose
             {
                 base.Update(week, events => 
                 {
-                    try
+                    Task.Run(() =>
                     {
-                        using (var file = Utils.CreateFile("StudentTimetable_" + Student.Id))
+                        try
                         {
-                            new BinaryFormatter().Serialize(file, this);
+                            using (var file = Utils.CreateFile("StudentTimetable_" + Student.Id))
+                            {
+                                new BinaryFormatter().Serialize(file, this);
+                            }
                         }
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e);
-                    }
-
-                    onResult(events);
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e);
+                        }
+                    }).ContinueHere(task => onResult(events));
                 }, Console.WriteLine);
             }
         }

@@ -91,7 +91,11 @@ namespace MobileNose
                 _updateTasks[week].ContinueHere(task =>
                 {
                     onResult(_events.Where(e => e.StartTime.IsDuring(week)).OrderBy(ev => ev));
-                });
+                }, TaskContinuationOptions.OnlyOnRanToCompletion);
+                _updateTasks[week].ContinueHere(task =>
+                {
+                    onError(task.Exception.InnerException);
+                }, TaskContinuationOptions.OnlyOnFaulted);
             }
         }
 

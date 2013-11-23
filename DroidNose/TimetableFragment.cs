@@ -99,11 +99,7 @@ namespace DroidNose
 		public void GetNewStudentId(string message, string defaultInput)
 		{
             var existingFragment = FragmentManager.FindFragmentByTag(StudentId);
-            if (existingFragment != null)
-            {
-                
-            }
-            else
+            if (existingFragment == null)
             {
                 var fragment = new StudentIdFragment(message, defaultInput, Timetable != null);
                 fragment.OnStudentId = studentId =>
@@ -281,9 +277,8 @@ namespace DroidNose
 
 		private void ShowOptionMenu(bool show)
 		{
-			Utils.RunOnUiThread (() =>
+			Utils.RunOnUiThread(() =>
 			{
-				Console.WriteLine ((show ? "Showing " : "Hiding ") + menuItems.Count + " menu items");
 				foreach (IMenuItem m in menuItems)
 					m.SetVisible (show);
 			});
