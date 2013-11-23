@@ -76,13 +76,16 @@ namespace MobileNose
                     {
                         var newEvents = DownloadEvents(week).OrderBy(ev => ev);
 
-                        _events.RemoveAll(e => e.StartTime.IsDuring(week));
-                        _events.AddRange(newEvents);
-                        _events.Sort();
+                        lock (_updateLock)
+                        {
+                            _events.RemoveAll(e => e.StartTime.IsDuring(week));
+                            _events.AddRange(newEvents);
+                            _events.Sort();
 
-                        UpdateLog[week] = DateTime.UtcNow;
+                            UpdateLog[week] = DateTime.UtcNow;
 
-                        _updatesInProgress.Remove(week);
+                            _updatesInProgress.Remove(week);
+                        }
                     });
                 }
                 _updateTasks[week].ContinueHere(task =>

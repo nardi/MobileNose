@@ -178,10 +178,11 @@ namespace DroidNose
 			ShowOptionMenu(true);
 
 			var settings = Activity.GetSharedPreferences(PreferencesFile, FileCreationMode.Private);
-			var studentIdHistory = settings.GetStringSet(StudentIdHistory, null);
+
+            var studentIdHistory = settings.GetStringSet(StudentIdHistory, new List<string>(1));
 			studentIdHistory.Add(Timetable.Student.Id.ToString());
 
-			var settingsEditor = Activity.GetSharedPreferences(PreferencesFile, FileCreationMode.Private).Edit();
+			var settingsEditor = settings.Edit();
 			settingsEditor.PutInt(StudentId, Timetable.Student.Id);
 			settingsEditor.PutStringSet(StudentIdHistory, studentIdHistory);
 			settingsEditor.Commit();

@@ -109,6 +109,8 @@ namespace MobileNose
                     {
                         Console.WriteLine(e);
                     }
+
+                    onResult(events);
                 }, Console.WriteLine);
             }
         }
