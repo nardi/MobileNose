@@ -112,7 +112,7 @@ namespace MobileNose
                             Console.WriteLine(e);
                         }
                     }).ContinueHere(task => onResult(events));
-                }, Console.WriteLine);
+                }, onError);
             }
         }
 
