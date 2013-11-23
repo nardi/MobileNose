@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Threading.Tasks;
 
 namespace MobileNose
 {
@@ -39,6 +40,9 @@ namespace MobileNose
         }
 
         [NonSerialized]
+        private IDictionary<Week, Task> _updateTasks;
+
+        [NonSerialized]
         private object _updateLock;
 
 		protected abstract IEnumerable<Event> DownloadEvents(Week week);
@@ -46,6 +50,7 @@ namespace MobileNose
         private void Initialize()
         {
             _updatesInProgress = new List<Week>();
+            _updateTasks = new Dictionary<Week, Task>();
             _updateLock = new object();
         }
 
@@ -60,40 +65,30 @@ namespace MobileNose
             Initialize();
         }
 
-        public virtual Func<Week, IOrderedEnumerable<Event>> Update
+        public virtual void Update(Week week, Action<IEnumerable<Event>> onResult, Action<Exception> onError)
         {
-            get
+            lock (_updateLock)
             {
-                return week =>
+                if (!_updatesInProgress.Contains(week))
                 {
-                    bool inProgress;
-                    lock (_updateLock)
+                    _updatesInProgress.Add(week);
+                    _updateTasks[week] = Task.Run(() =>
                     {
-                        inProgress = _updatesInProgress.Contains(week);
-                    }
-                    if (inProgress)
-                    {
-                        while (_updatesInProgress.Contains(week)) ;
-                        return _events.Where(e => e.StartTime.IsDuring(week)).OrderBy(ev => ev);
-                    }
+                        var newEvents = DownloadEvents(week).OrderBy(ev => ev);
 
-                    lock (_updateLock)
-                    {
-                        _updatesInProgress.Add(week);
-                    }
+                        _events.RemoveAll(e => e.StartTime.IsDuring(week));
+                        _events.AddRange(newEvents);
+                        _events.Sort();
 
-                    var newEvents = DownloadEvents(week).OrderBy(ev => ev);
+                        UpdateLog[week] = DateTime.UtcNow;
 
-                    _events.RemoveAll(e => e.StartTime.IsDuring(week));
-                    _events.AddRange(newEvents);
-                    _events.Sort();
-
-                    UpdateLog[week] = DateTime.UtcNow;
-
-                    _updatesInProgress.Remove(week);
-
-                    return newEvents;
-                };
+                        _updatesInProgress.Remove(week);
+                    });
+                }
+                _updateTasks[week].ContinueHere(task =>
+                {
+                    onResult(_events.Where(e => e.StartTime.IsDuring(week)).OrderBy(ev => ev));
+                });
             }
         }
 
@@ -107,7 +102,7 @@ namespace MobileNose
 			Week week = day.Week;
 			if (UpdateNeeded(week))
 			{
-				Update.AsyncInvoke(week, events => onUpdate(day, events), onError);
+				Update(week, events => onUpdate(day, events), onError);
 				return true;
 			}
 			return false;
@@ -125,7 +120,7 @@ namespace MobileNose
 			if (UpdateNeeded(week))
 			{
 				Utils.RunOnUiThread(onUpdateStart, day);
-				Update.AsyncInvoke(week, events => onUpdateFinish(day, events), onError);
+				Update(week, events => onUpdateFinish(day, events), onError);
 			}
 			return currentDayEvents.OrderBy(ev => ev);
 		}
