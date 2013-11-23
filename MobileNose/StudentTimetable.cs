@@ -32,12 +32,12 @@ namespace MobileNose
                 {
                     var startTime = week.StartTime.AddDays(Math.Log(tta.Day)/Math.Log(2)).AddHours(tta.StartTime);
                     var duration = TimeSpan.FromHours(tta.Duration);
-                    var course = Student.Courses.FirstOrDefault(c => tta.Name.StartsWith(c.CatalogNumber));
+                    var course = Student.Courses.FirstOrDefault(c => tta.Name.Contains(c.CatalogNumber));
                     // If we don't know about this course, the student information needs to be updated
                     if (course == null)
                     {
                         Student.Update();
-                        course = Student.Courses.FirstOrDefault(c => tta.Name.StartsWith(c.CatalogNumber));
+                        course = Student.Courses.FirstOrDefault(c => tta.Name.Contains(c.CatalogNumber));
                     }
                     var groups = new List<Group>();
                     if (course != null)
@@ -49,7 +49,7 @@ namespace MobileNose
 
                     if (course == null)
                     {
-                        course = new Course(0, tta.Description, tta.Description, academicYear);
+                        course = new Course(0, tta.Name, tta.Description, academicYear);
                     }
 
                     events.Add(new Event(tta.ID, startTime, duration, course, groups, tta.ActivityType,
