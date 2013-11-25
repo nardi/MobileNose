@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Json;
 
 using Android.Support.V4.App;
 using Android.Content;
@@ -174,13 +175,13 @@ namespace DroidNose
 			ShowOptionMenu(true);
 
 			var settings = Activity.GetSharedPreferences(PreferencesFile, FileCreationMode.Private);
-
-            var studentIdHistory = settings.GetStringSet(StudentIdHistory, new List<string>(1));
+			
+			var studentIdHistory = JsonValue.Parse(settings.GetString(StudentIdHistory, "[]")).Select(val => (string)val);
 			studentIdHistory.Add(Timetable.Student.Id.ToString());
 
 			var settingsEditor = settings.Edit();
 			settingsEditor.PutInt(StudentId, Timetable.Student.Id);
-			settingsEditor.PutStringSet(StudentIdHistory, studentIdHistory);
+			settingsEditor.PutString(StudentIdHistory, JsonArray(studentIdHistory).ToString());
 			settingsEditor.Commit();
 
 			Day currentDay = startDay;
