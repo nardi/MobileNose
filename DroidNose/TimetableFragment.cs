@@ -176,8 +176,8 @@ namespace DroidNose
 
 			var settings = Activity.GetSharedPreferences(PreferencesFile, FileCreationMode.Private);
 			
-			var studentIdHistory = JsonValue.Parse(settings.GetString(StudentIdHistory, "[]")).Select(val => (string)val);
-			studentIdHistory.Add(Timetable.Student.Id.ToString());
+			var studentIdHistory = JsonValue.Parse(settings.GetString(StudentIdHistory, "[]")).Select(val => (int)val).ToList();
+			studentIdHistory.Insert(0, Timetable.Student.Id);
 
 			var settingsEditor = settings.Edit();
 			settingsEditor.PutInt(StudentId, Timetable.Student.Id);
