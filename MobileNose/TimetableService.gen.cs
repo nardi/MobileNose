@@ -639,6 +639,27 @@ namespace MobileNose
         }
         [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
         private global::System.Collections.ObjectModel.Collection<TTLocation> _Locations = new global::System.Collections.ObjectModel.Collection<TTLocation>();
+        /// <summary>
+        /// There are no comments for Property Course_ID in the schema.
+        /// </summary>
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        public int Course_ID
+        {
+            get
+            {
+                return this._Course_ID;
+            }
+            set
+            {
+                this.OnCourse_IDChanging(value);
+                this._Course_ID = value;
+                this.OnCourse_IDChanged();
+            }
+        }
+        [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Services.Design", "1.0.0")]
+        private int _Course_ID;
+        partial void OnCourse_IDChanging(int value);
+        partial void OnCourse_IDChanged();
     }
     /// <summary>
     /// There are no comments for TimetableData.Model.TTStaff in the schema.
