@@ -1,17 +1,31 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.emu1" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="..\..\..\..\Program Files (x86)\MSBuild\Xamarin\Android\Xamarin.Android.Common.targets">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" PreferredExecutionTarget="Android.Nexus 4 (KitKat)" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="MobileNose\TimetableService.cs">
     <Files>
       <File FileName="DroidNose\DayView.cs" Line="1" Column="1" />
       <File FileName="DroidNose\HourView.cs" Line="1" Column="1" />
       <File FileName="DroidNose\Properties\AndroidManifest.xml" Line="1" Column="1" />
-      <File FileName="MobileNose\Timetable.cs" Line="1" Column="1" />
+      <File FileName="MobileNose\Timetable.cs" Line="59" Column="59" />
       <File FileName="DroidNose\EventView.cs" Line="1" Column="1" />
       <File FileName="MobileNose\DateTime\TimePeriod.cs" Line="1" Column="1" />
       <File FileName="MobileNose\DateTime\DateTimeAdditions.cs" Line="1" Column="1" />
       <File FileName="DroidNose\TimetableFragment.cs" Line="1" Column="1" />
-      <File FileName="..\..\..\..\Program Files (x86)\MSBuild\Xamarin\Android\Xamarin.Android.Common.targets" Line="46" Column="46" />
+      <File FileName="..\..\..\..\Program Files (x86)\MSBuild\Xamarin\Android\Xamarin.Android.Common.targets" Line="121" Column="121" />
       <File FileName="DroidNose\ChooseDateFragment.cs" Line="1" Column="1" />
+      <File FileName="MobileNose\TimetableService.gen.cs" Line="22" Column="22" />
+      <File FileName="MobileNose\StudentTimetable.cs" Line="54" Column="54" />
+      <File FileName="MobileNose\Student.cs" Line="54" Column="54" />
+      <File FileName="MobileNose\TimetableService.cs" Line="3" Column="3" />
+      <File FileName="DroidNose\MainApplication.cs" Line="1" Column="1" />
+      <File FileName="DroidNose\MainActivity.cs" Line="46" Column="46" />
+      <File FileName="DroidNose\StudentIdFragment.cs" Line="1" Column="1" />
+      <File FileName="DroidNose\BorderedLinearLayout.cs" Line="1" Column="1" />
+      <File FileName="DroidNose\TimeLayout.cs" Line="1" Column="1" />
+      <File FileName="DroidNose\MultiDayView.cs" Line="1" Column="1" />
+      <File FileName="DroidNose\ChooseWeekFragment.cs" Line="1" Column="1" />
+      <File FileName="DroidNose\CustomDataReportProvider.cs" Line="1" Column="1" />
+      <File FileName="DroidNose\WorkingReportSender.cs" Line="1" Column="1" />
+      <File FileName="MobileNose\Utils.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
@@ -22,5 +36,4 @@
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.DroidNose AndroidDeviceId-Debug="HT06DPL09193" />
 </Properties>

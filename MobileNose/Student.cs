@@ -23,6 +23,8 @@ namespace MobileNose
 
         public void Update()
         {
+			UpdateTime = DateTime.UtcNow;
+
             var svc = new TimetableService();
             var courseUri = new Uri("GetCoursesByStudent?id=" + Id, UriKind.Relative);
             var groupUri = new Uri("GetGroupsByStudent?id=" + Id, UriKind.Relative);
@@ -30,7 +32,7 @@ namespace MobileNose
                                              new DataServiceRequest<TTGroup>(groupUri));
 
             Courses = new HashSet<Course>();
-            var groups = new Dictionary<Course, Group>();
+            Groups = new Dictionary<Course, Group>();
 
             foreach (QueryOperationResponse response in responses)
             {
@@ -47,13 +49,10 @@ namespace MobileNose
                     {
                         var course = Courses.FirstOrDefault(c => c.CatalogNumber == ttg.CatalogNumber);
                         if (course != null)
-                            groups[course] = new Group(ttg.ID, ttg.Identifier, course);
+                            Groups[course] = new Group(ttg.ID, ttg.Identifier, course);
                     }
                 }
             }
-
-            Groups = groups;
-            UpdateTime = DateTime.UtcNow;
         }
 
 		public Student()

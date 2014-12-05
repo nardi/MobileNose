@@ -92,7 +92,7 @@ namespace MobileNose
             if (DateTime.UtcNow - Student.UpdateTime > Timetable.UpdateInterval)
             {
 				Task.Run(() => Student.Update())
-                    .ContinueHere(task => Update(week, onResult, onError));
+                    .ContinueHere(task => Update(week, onResult, onError), onError);
             }
             else
             {
@@ -111,7 +111,7 @@ namespace MobileNose
                         {
                             Console.WriteLine(e);
                         }
-                    }).ContinueHere(task => onResult(events));
+					}).ContinueHere(task => onResult(events), onError);
                 }, onError);
             }
         }

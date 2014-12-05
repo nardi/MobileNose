@@ -188,11 +188,6 @@ namespace MobileNose
 	            TaskScheduler.FromCurrentSynchronizationContext());
 	    }
 
-        public static Task ContinueHere(this Task task, Action<Task> continuationAction)
-        {
-            return task.ContinueWith(continuationAction, TaskScheduler.FromCurrentSynchronizationContext());
-        }
-
 		public static Tuple<Task, Task> ContinueHere(this Task task, Action<Task> successContinuation, Action<Task> faultContinuation)
 		{
 			return Tuple.Create( 
@@ -201,15 +196,15 @@ namespace MobileNose
 			);
 		}
 
+		public static Task ContinueHere(this Task task, Action<Task> successContinuation, Action<Exception> onError)
+		{
+			return task.ContinueHere(successContinuation, t => onError(t.Exception.InnerException)).Item1;
+		}
+
         public static Task ContinueHere<T>(this Task<T> task, Action<Task<T>> continuationAction, TaskContinuationOptions taskContinuationOptions)
         {
             return task.ContinueWith(continuationAction, CancellationToken.None, taskContinuationOptions,
                 TaskScheduler.FromCurrentSynchronizationContext());
-        }
-
-        public static Task ContinueHere<T>(this Task<T> task, Action<Task<T>> continuationAction)
-        {
-            return task.ContinueWith(continuationAction, TaskScheduler.FromCurrentSynchronizationContext());
         }
 
         public static Tuple<Task, Task> ContinueHere<T>(this Task<T> task, Action<Task<T>> successContinuation, Action<Task<T>> faultContinuation)
@@ -219,6 +214,11 @@ namespace MobileNose
                 task.ContinueHere(faultContinuation, TaskContinuationOptions.OnlyOnFaulted)
 			);
         }
+
+		public static Task ContinueHere<T>(this Task<T> task, Action<Task<T>> successContinuation, Action<Exception> onError)
+		{
+			return task.ContinueHere(successContinuation, t => onError(t.Exception.InnerException)).Item1;
+		}
 	}
 }
 
